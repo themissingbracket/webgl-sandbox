@@ -15,7 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	const vertexPosBuffer =  gl.createBuffer()
 
 	gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosBuffer)
-	const vertices: number[] = [-0.5, -0.5, 0.5, -0.5, 0, 0.5]
+	const vertices = [
+		-0.5,-0.5,
+		-0.5,0.5,
+		0.5,0.5,
+		0.5,-0.5
+	]
 
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW)
 	const program = createProgram(VertexShader, FragmentShader, gl)
@@ -23,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const vertexPosAttrib = gl.getAttribLocation(program, 'pos')
 	gl.enableVertexAttribArray(vertexPosAttrib)
 	gl.vertexAttribPointer(vertexPosAttrib, 2, gl.FLOAT, false, 0, 0)
-	gl.drawArrays(gl.TRIANGLES, 0,3)
+	gl.drawArrays(gl.TRIANGLE_STRIP, 0,3)
 
 })
 
